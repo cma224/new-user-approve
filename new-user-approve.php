@@ -565,8 +565,9 @@ class pw_new_user_approve {
 			'user_email' => $user_email,
 		) );
 		$message = apply_filters( 'new_user_approve_approve_user_message', $message, $user );
-
-		$subject = sprintf( __( '[%s] Registration Approved', 'new-user-approve' ), get_option( 'blogname' ) );
+		
+		// Add name of person who approved the user into the E-mail message.
+		$subject = sprintf( __( '[%s] Registration Approved by '. wp_get_current_user()->user_firstname, 'new-user-approve' ), get_option( 'blogname' ) );
 		$subject = apply_filters( 'new_user_approve_approve_user_subject', $subject );
 
 		// send the mail
